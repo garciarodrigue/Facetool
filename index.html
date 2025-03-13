@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Profile Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            margin: 50px auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #1877f2;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #155dbb;
+        }
+        .profile {
+            margin-top: 20px;
+        }
+        img {
+            border-radius: 50%;
+            margin-top: 10px;
+            width: 150px;
+            height: 150px;
+            border: 3px solid #1877f2;
+        }
+        .username {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Ver Imagen de Perfil de Facebook</h2>
+        <input type="text" id="username" placeholder="Ingrese el nombre de usuario">
+        <button onclick="showProfile()">Ver Perfil</button>
+        <div class="profile" id="profileSection" style="display: none;">
+            <div class="username" id="profileName"></div>
+            <img id="profilePic" src="" alt="Imagen de Perfil">
+        </div>
+    </div>
+
+    <script>
+        function showProfile() {
+            let username = document.getElementById("username").value.trim();
+            if (username === "") {
+                alert("Por favor, ingrese un nombre de usuario válido.");
+                return;
+            }
+
+            let imageUrl = `https://graph.facebook.com/${username}/picture?type=large`;
+            
+            document.getElementById("profilePic").src = imageUrl;
+            document.getElementById("profileName").innerText = `@${username}`;
+            document.getElementById("profileSection").style.display = "block";
+        }
+    </script>
+</body>
+</html>
